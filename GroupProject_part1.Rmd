@@ -1,0 +1,103 @@
+---
+title: "Urban Big Data Analytics - Final Group Project Part 1: Crime Data"
+author: "Andy Hong"
+date: "July 18, 2019"
+output:
+  html_document:
+    css: my_styles.css
+  pdf_document: default
+  word_document: default
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+## Prerequisites
+
++ Register for Exploratory and download/install Exploratory: https://exploratory.io/download <br> 
+**[IMPORTANT]** If you are having a problem registering, please let me know. We can figure this out.
+
++ Download and install R: https://mirror.its.sfu.ca/mirror/CRAN
+
++ Download and install RStudio: https://www.rstudio.com/products/rstudio/download/
+
++ Download and install QGIS: https://qgis.org/
+
+
+## Part 1
+
+### Synopsis
+The purpose of this final group project is to learn how to create a basic data science report. You will need to wrangle messy data that come in a variety of format. You will also need to merge different datasets and conduct an analysis to test your hypotheses or make recommendations based on your findings. We will go through the initial three parts of your group project in class, but your group will need to work together to complete the final report.
+
++ In part 1, you will be first given a snapshot of crime data for 2016, and you will be diving into data wrangling procedures. 
+
++ In part 2, you will be working on merging the crime data with other data sets from the open data platform. 
+
++ In part 3, you will be conducting an exploratory data analysis (EDA) and will be applying some statistical learning techniques to extract useful information out of the dataset you created.
+
+
+### Group project folder
+
+ + <font color="red">**[IMPORTANT]**</font> Create a group project folder to save your files
+
+ + Windows: My Documents/vsp_bigdata/group_project
+
+ + Mac: Documents/vsp_bigdata/group_project
+<br>
+
+### Each group is assigned one city to complete this group project
+
+ + Save your group project file to the specified group project folder created above
+
+ + Group 1: <a href="https://urbanbigdata.github.io/98-group-project/group1/boston_crime_2016.csv" download>Boston crime data 2016</a>
+ 
+ + Group 2: <a href="https://urbanbigdata.github.io/98-group-project/group2/losangeles_crime_2016.csv" download>Los Angeles crime data 2016</a>
+
+ + Group 3: <a href="https://urbanbigdata.github.io/98-group-project/group3/losangeles_crime_2016.csv" download>Los Angeles crime data 2016</a>
+
+ + Group 4: <a href="https://urbanbigdata.github.io/98-group-project/group4/sanfrancisco_crime_2016.csv" download> San Francisco crime data 2016</a>
+
+ + Group 5: <a href="https://urbanbigdata.github.io/98-group-project/group5/washingtondc_crime_2016.csv" download> Washington DC crime data 2016</a>
+
+ + Group 6: <a href="https://urbanbigdata.github.io/98-group-project/group6/newyork_crime_2016.csv" download>New York City crime data 2016</a>
+
+ + Group 7: <a href="https://urbanbigdata.github.io/98-group-project/group7/newyork_crime_2016.csv" download>New York City crime data 2016</a>
+
+ + Group 8: <a href="https://urbanbigdata.github.io/98-group-project/group8/philadelphia_crime_2016.csv" download>Philadelphia crime data 2016</a>
+
+ + Group 9: <a href="https://urbanbigdata.github.io/98-group-project/group9/detroit_crime_2016.csv" download>Detroit crime data 2016</a>
+
+ + Group 10: <a href="https://urbanbigdata.github.io/98-group-project/group10/detroit_crime_2016.csv" download>Detroit crime data 2016</a>
+
+
+
+### Remember the five elements of good story telling
+ 
+  + **Issue at hand**: What are the issues? What's troubling the most?
+  
+  + **Supporting data**: For this project, you are given the crime data. Your job is to merge the the crime data with some other useful data to complete your story.
+  
+  + **Relationship**: What is the relationship between X and Y? Does the relationship go up or down or stay the same?
+  
+  + **Interprtation**: Why do you think the relationship between X and Y exists? Do some research. Read newspaper, abd use your common sense and knowledge to try to understand the observed relationship.
+  
+  + **Summary and conclusions**: Summarize what you've learned and draw a conclusion. 
+  
+ 
+<br><br><br>
+ 
+
+  
+
+
+
+
+ 
+ 
+
+
+
+

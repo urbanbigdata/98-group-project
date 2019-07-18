@@ -1,0 +1,116 @@
+---
+title: "Urban Big Data Analytics - Lecture 9 Group Session / Final Group Project Part 3: Group Working Session"
+author: "Andy Hong"
+date: "July 30, 2019"
+output:
+  html_document:
+    css: my_styles.css
+  pdf_document: default
+  word_document: default
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+<br>
+
+## Prerequisites
+
++ Register for Exploratory and download/install Exploratory: https://exploratory.io/download <br> 
+
++ Download and install R: https://mirror.its.sfu.ca/mirror/CRAN
+
++ Download and install RStudio: https://www.rstudio.com/products/rstudio/download/
+
++ Download and install QGIS: https://qgis.org/ 
+
+<br>
+
+## Synopsis
+The purpose of this group project is to learn how to create a basic data science report. You will need to wrangle messy data that come in a variety of different formats. You will also need to merge different datasets and conduct an analysis to test your hypotheses or make recommendations based on your findings. We will go through the initial three parts of your group project in class, but your group will need to work together to complete the final report.
+
++ In part 1, you will be first given a snapshot of crime data for 2016, and you will be diving into data wrangling procedures. 
+
++ In part 2, you will be working on merging the crime data with other datasets from the open data platform. 
+
++ In part 3, you will be conducting an exploratory data analysis (EDA) and will be applying some statistical learning techniques to extract useful information out of the dataset you created.
+
+<br>
+
+
+## Each group is assigned one city to complete this group project
+
+**[IMPORTANT]** Please move the downloaded file to a specified project folder.<br>
+Once you downloaded the crime data for each, download the census data and the corresponding GeoJSON file.
+
++ <b>Group 1</b> - Boston: <a href="https://urbanbigdata.github.io/98-group-project/group1/boston_crime_2016.csv" download>Boston crime 2016</a>, <a href="https://urbanbigdata.github.io/98-group-project/group1/boston_census_2016.csv" download>Boston Census</a>, <a href="https://urbanbigdata.github.io/98-group-project/group1/boston_census.geojson" download>Boston GeoJSON</a>
+ 
++ <b>Group 2</b> - Los Angeles: <a href="https://urbanbigdata.github.io/98-group-project/group2/losangeles_crime_2016.csv" download>LA crime 2016</a>, <a href="https://urbanbigdata.github.io/98-group-project/group2/losangeles_census_2016.csv" download>LA Census</a>, <a href="https://urbanbigdata.github.io/98-group-project/group2/losangeles_census.geojson" download>LA GeoJSON</a>
+
++ <b>Group 3</b> - Los Angeles: <a href="https://urbanbigdata.github.io/98-group-project/group3/losangeles_crime_2016.csv" download>LA crime 2016</a>, <a href="https://urbanbigdata.github.io/98-group-project/group3/losangeles_census_2016.csv" download>LA Census</a>, <a href="https://urbanbigdata.github.io/98-group-project/group3/losangeles_census.geojson" download>LA GeoJSON</a>
+
++ <b>Group 4</b> - San Francisco: <a href="https://urbanbigdata.github.io/98-group-project/group4/sanfrancisco_crime_2016.csv" download>SF crime 2016</a>, <a href="https://urbanbigdata.github.io/98-group-project/group4/sanfrancisco_census_2016.csv" download>SF Census</a>, <a href="https://urbanbigdata.github.io/98-group-project/group4/sanfrancisco_census.geojson" download>SF GeoJSON</a>
+
++ <b>Group 5</b> - Washington DC: <a href="https://urbanbigdata.github.io/98-group-project/group5/washingtondc_crime_2016.csv" download>Washington DC crime 2016</a>, <a href="https://urbanbigdata.github.io/98-group-project/group5/washingtondc_census_2016.csv" download>Washington DC Census</a>, <a href="https://urbanbigdata.github.io/98-group-project/group5/washingtondc_census.geojson" download>Washington DC GeoJSON</a>
+
++ <b>Group 6</b> - New York City: <a href="https://urbanbigdata.github.io/98-group-project/group6/newyork_crime_2016.csv" download>NYC crime 2016</a>, <a href="https://urbanbigdata.github.io/98-group-project/group6/newyork_census_2016.csv" download>NYC census</a>, <a href="https://urbanbigdata.github.io/98-group-project/group6/newyork_census.geojson" download>NYC GeoJSON</a>
+
++ <b>Group 7</b> - New York City: <a href="https://urbanbigdata.github.io/98-group-project/group7/newyork_crime_2016.csv" download>NYC crime 2016</a>, <a href="https://urbanbigdata.github.io/98-group-project/group7/newyork_census_2016.csv" download>NYC census</a>, <a href="https://urbanbigdata.github.io/98-group-project/group7/newyork_census.geojson" download>NYC GeoJSON</a>
+
++ <b>Group 8</b> - Philadelphia: <a href="https://urbanbigdata.github.io/98-group-project/group8/philadelphia_crime_2016.csv" download>Philadelphia crime 2016</a>, <a href="https://urbanbigdata.github.io/98-group-project/group8/philadelphia_census_2016.csv" download>Philadelphia Census</a>, <a href="https://urbanbigdata.github.io/98-group-project/group8/philadelphia_census.geojson" download>Philadelphia GeoJSON</a>
+
++ <b>Group 9</b> - Detroit: <a href="https://urbanbigdata.github.io/98-group-project/group9/detroit_crime_2016.csv" download>Detroit crime 2016</a>, <a href="https://urbanbigdata.github.io/98-group-project/group9/detroit_census_2016.csv" download>Detroit Census</a>, <a href="https://urbanbigdata.github.io/98-group-project/group9/detroit_census.geojson" download>Detroit GeoJSON</a>
+
++ <b>Group 10</b> - Detroit: <a href="https://urbanbigdata.github.io/98-group-project/group10/detroit_crime_2016.csv" download>Detroit crime 2016</a>, <a href="https://urbanbigdata.github.io/98-group-project/group10/detroit_census_2016.csv" download>Detroit Census</a>, <a href="https://urbanbigdata.github.io/98-group-project/group10/detroit_census.geojson" download>Detroit GeoJSON</a>
+
+<br>
+
+## Instruction
+
+### Remember the five elements of good story telling
+ 
+  + **Issue at hand**: What are the issues? What's troubling the most?
+  
+  + **Supporting data**: For this project, you are given the crime data. Your job is to merge the the crime data with some other useful data to complete your story.
+  
+  + **Relationship**: What is the relationship between X and Y? Does the relationship go up or down or stay the same?
+  
+  + **Interprtation**: Why do you think the relationship between X and Y exists? Do some research. Read newspaper, and use your common sense and judgment to try to understand the observed relationship.
+  
+  + **Summary and conclusions**: Summarize what you've learned and draw a conclusion. <br><br>
+  
+ 
+## Send your initial template report
+
+Please format your report using the following section titles and write up the first (Problem Statement) and second sections (Quetions and Hypotheses).
+
+1. Problem Statement
+2. Quetions and Hypotheses
+3. Data and Methods
+4. Results and Interpretation
+5. Conclusions
+
+ + Please send your document to the course email (urbanbigdata2019@gmail.com). <br>
+ + <font color="red"><b>[IMPORTANT]</b></font> Please use the following email title format: <br>
+ `VSP BigData [lecture number] - [group number] - [presenter name]` <br>
+ ex), `VSP BigData Lecture 9 - Group 1 - Bill Gates` <br>
+ 
+ 
+<br><br><br>
+ 
+
+
+
+  
+
+
+
+
+ 
+ 
+
+
+
+
