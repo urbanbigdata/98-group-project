@@ -29,16 +29,169 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ## Synopsis
-The purpose of this group project is to learn how to create a basic data science report. You will need to wrangle messy data that come in a variety of different formats. You will also need to merge different datasets and conduct an analysis to test your hypotheses or make recommendations based on your findings. We will go through the initial three parts of your group project in class, but your group will need to work together to complete the final report.
+The purpose of this group project is to learn how to create a basic data science report. You will need to wrangle messy data that come in a variety of different formats. You will also need to merge different datasets and conduct an analysis to test your hypotheses or make recommendations based on your findings. We cover the first three parts of your group project in class, but your group will need to work together to complete the final report.
 
-+ In part 1, you will be first given a snapshot of crime data for 2016, and you will be diving into data wrangling procedures. 
++ In part 1, you learned how to explore the crime data and applied some data wrangling techniques. 
 
-+ In part 2, you will be working on merging the crime data with other datasets from the open data platform. 
++ In part 2, you learned how to merge the crime data with other datasets from the open data platform. 
 
-+ In part 3, you will be conducting an exploratory data analysis (EDA) and will be applying some statistical learning techniques to extract useful information out of the dataset you created.
++ In part 3, you will be conducting an exploratory data analysis (EDA) and applying some statistical learning techniques to extract useful information out of the dataset you created.
 
 <br>
 
+## Statistical modeling
+
+We will use the Seattle crime data first to show how to use Exploratory to build a linear regression model. Then, we will use R Studio to develop the same model using the codes.
+
+For this group session, we will build on the previous Lecture 7's group session and use the joined data. Go back to Lecture 7, if you haven't done the previous session: <a href="https://urbanbigdata.github.io/07-lecture-exploratory_data_analysis/group-session/GroupSession_07.html" target="_blank">Lecture 7. Group Session</a>
+<br><br>
+
+**Exploratory**<br>
+Open up the Exploratory and choose the Seattle crime 2013 data. After the join step, click `mutate` to create a new variable called `crime_rate`. For the new variable, use this formula to correct to population. `total_crime / pop * 1000`. Usually crime rate is reported as Number of crime per 1,000 population.
+
+Now, go to `Analytics` and choose `Linear Regression Analysis` for your type. For target variable, choose `crime_rate` and for predictor variable(s), choose `p_seniors`, `p_white`, `p_female`, `p_kids`,`p_poverty`, `med_hh_inc`, `some_college`.<br>
+
+Mathematically, this can be written as a linear function below.
+
+$y = \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \beta_{7}x_{7} + \varepsilon$ 
+
+where $y$ is number of crime per 1000 population; $x_{1}$ is % of senior population; $x_{2}$ is % of white population; $x_{3}$ is % of female population; $x_{4}$ is % of children population; $x_{5}$ is % of households under poverty; $x_{6}$ is median household income; $x_{7}$ is % of population having some college degree; and $\varepsilon$ is a random error.
+
+<br><br>
+**R Studio**<br>
+Start the R Studio and prepare the packages
+
+```{r message=F}
+
+###########################
+#
+# Statistical modeling
+# Andy Hong
+# July 31, 2019
+# 
+###########################
+
+# Set CRAN repository source
+options(repos="https://cran.rstudio.com")
+
+# install.packages("dplyr")
+# install.packages("magrittr")
+
+library(dplyr)
+library(magrittr)
+```
+
+Now, let's load the data.
+```{r}
+
+seattle_crime_2013 = read.csv("/Users/andyhong/Documents/vsp_bigdata/group-session/07-lecture/seattle_crime_2013.csv")
+
+seattle_census_2013 = read.csv("/Users/andyhong/Documents/vsp_bigdata/group-session/07-lecture/seattle_census_2013.csv")
+
+```
+
+Let's do some data wrangling procedures.
+
+```{r}
+
+# Format tract variable
+data = seattle_crime_2013 %>% 
+  mutate(tract = as.numeric(gsub("\\..*", "", CensusTract2000))) 
+  
+# Group by tract and generate total crime variable.
+data = data %>% 
+  group_by(tract) %>%
+  summarize(total_crime = n())
+
+# Do a left join with the census data by tract
+data = data %>%
+  left_join(seattle_census_2013, by = c("tract" = "tract")) 
+
+# Generate a crime rate variable
+data = data %>%
+  mutate(crime_rate = total_crime/pop * 1000)
+  
+```
+
+Let's build our linear models. We will build two models. Model 1 is a basic model, and model 2 is a full model.
+
+```{r}
+
+model1 = lm(data = data, 
+            crime_rate ~ 
+              p_seniors + 
+              p_white +
+              p_female +
+              p_kids
+            )
+
+model2 = lm(data = data, 
+            crime_rate ~ 
+              p_seniors + 
+              p_white +
+              p_female +
+              p_kids +
+              p_poverty +
+              med_hh_inc +
+              some_college
+            )
+
+```
+
+
+Again, mathematically, this can be written as a linear function below.
+
+$y = \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \beta_{7}x_{7} + \varepsilon$ 
+
+where $y$ is number of crime per 1000 population; $x_{1}$ is % of senior population; $x_{2}$ is % of white population; $x_{3}$ is % of female population; $x_{4}$ is % of children population; $x_{5}$ is % of households under poverty; $x_{6}$ is median household income; $x_{7}$ is % of population having some college degree; and $\varepsilon$ is a random error. <br>
+
+
+A basic approach to show the model results is the `summary` function.
+
+```{r}
+summary(model1)
+```
+
+There are other useful tools to visualize the model results. We will use the new `jtools` package for this task. The `ggstance` and `huxtable` packages are required to use the functions we want from the `jtools` package.
+
+```{r}
+# install.packages("jtools")
+# install.packages("ggstance")
+# install.packages("huxtable")
+
+library(jtools)
+library(ggstance)
+library(huxtable)
+```
+
+The `plot_summs()` function generates a coefficient plot that looks very much like what we saw in the Exploratory programe.
+
+```{r}
+plot_summs(model1, model2)
+```
+
+You can also use the `coefs` option to use your own labels.
+
+```{r}
+plot_summs(model1, model2,
+          coefs = c(
+             "% seniors" = "p_seniors",
+             "% female" = "p_female",
+             "% white" = "p_white",
+             "% children" = "p_kids",
+             "% under poverty" = "p_poverty",
+             "median household income" = "med_hh_inc",
+             "% some college" = "some_college"
+           ))
+```
+           
+           
+Lastly, the `export_summs()` function generate a nice table that can be exported to a word program.
+
+```{r}
+export_summs(model1, model2)
+```
+<br><br>
 
 ## Each group is assigned one city to complete this group project
 
@@ -67,7 +220,9 @@ Once you downloaded the crime data for each, download the census data and the co
 
 <br>
 
-## Instruction
+### Statistical analysis of your city's crime data
+Now that you have learned how to build models, use your city's crime data to develop some models and describe what the model results tell you. 
+
 
 ### Remember the five elements of good story telling
  
