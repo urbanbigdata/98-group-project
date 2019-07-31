@@ -215,7 +215,7 @@ summary {
 <p><strong>Exploratory</strong><br> Open up the Exploratory and choose the Seattle crime 2013 data. After the join step, click <code>mutate</code> to create a new variable called <code>crime_rate</code>. For the new variable, use this formula to correct to population. <code>total_crime / pop * 1000</code>. Usually crime rate is reported as Number of crime per 1,000 population.</p>
 <p>Now, go to <code>Analytics</code> and choose <code>Linear Regression Analysis</code> for your type. For target variable, choose <code>crime_rate</code> and for predictor variable(s), choose <code>p_seniors</code>, <code>p_white</code>, <code>p_female</code>, <code>p_kids</code>,<code>p_poverty</code>, <code>med_hh_inc</code>, <code>some_college</code>.<br></p>
 <p>Mathematically, this can be written as a linear function below.</p>
-<p><span class="math inline">\(y = \alpha + \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \beta_{7}x_{7} + \varepsilon\)</span></p>
+<p><span class="math inline">\(y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \beta_{7}x_{7} + \varepsilon\)</span></p>
 <p>where <span class="math inline">\(y\)</span> is number of crime per 1000 population; <span class="math inline">\(x_{1}\)</span> is % of senior population; <span class="math inline">\(x_{2}\)</span> is % of white population; <span class="math inline">\(x_{3}\)</span> is % of female population; <span class="math inline">\(x_{4}\)</span> is % of children population; <span class="math inline">\(x_{5}\)</span> is % of households under poverty; <span class="math inline">\(x_{6}\)</span> is median household income; <span class="math inline">\(x_{7}\)</span> is % of population having some college degree; and <span class="math inline">\(\varepsilon\)</span> is a random error.</p>
 <p><br><br> <strong>R Studio</strong><br> Start the R Studio and prepare the packages</p>
 <pre class="r"><code>###########################
@@ -275,7 +275,7 @@ model2 = lm(data = data,
               some_college
             )</code></pre>
 <p>Again, mathematically, this can be written as a linear function below.</p>
-<p><span class="math inline">\(y = \alpha + \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \beta_{7}x_{7} + \varepsilon\)</span></p>
+<p><span class="math inline">\(y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \beta_{7}x_{7} + \varepsilon\)</span></p>
 <p>where <span class="math inline">\(y\)</span> is number of crime per 1000 population; <span class="math inline">\(x_{1}\)</span> is % of senior population; <span class="math inline">\(x_{2}\)</span> is % of white population; <span class="math inline">\(x_{3}\)</span> is % of female population; <span class="math inline">\(x_{4}\)</span> is % of children population; <span class="math inline">\(x_{5}\)</span> is % of households under poverty; <span class="math inline">\(x_{6}\)</span> is median household income; <span class="math inline">\(x_{7}\)</span> is % of population having some college degree; and <span class="math inline">\(\varepsilon\)</span> is a random error. <br></p>
 <p>A basic approach to show the model results is the <code>summary</code> function.</p>
 <pre class="r"><code>summary(model1)</code></pre>

@@ -53,7 +53,7 @@ Now, go to `Analytics` and choose `Linear Regression Analysis` for your type. Fo
 
 Mathematically, this can be written as a linear function below.
 
-$y = \alpha + \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \beta_{7}x_{7} + \varepsilon$ 
+$y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \beta_{7}x_{7} + \varepsilon$ 
 
 where $y$ is number of crime per 1000 population; $x_{1}$ is % of senior population; $x_{2}$ is % of white population; $x_{3}$ is % of female population; $x_{4}$ is % of children population; $x_{5}$ is % of households under poverty; $x_{6}$ is median household income; $x_{7}$ is % of population having some college degree; and $\varepsilon$ is a random error.
 
@@ -141,7 +141,7 @@ model2 = lm(data = data,
 
 Again, mathematically, this can be written as a linear function below.
 
-$y = \alpha + \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \beta_{7}x_{7} + \varepsilon$ 
+$y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \beta_{7}x_{7} + \varepsilon$ 
 
 where $y$ is number of crime per 1000 population; $x_{1}$ is % of senior population; $x_{2}$ is % of white population; $x_{3}$ is % of female population; $x_{4}$ is % of children population; $x_{5}$ is % of households under poverty; $x_{6}$ is median household income; $x_{7}$ is % of population having some college degree; and $\varepsilon$ is a random error. <br>
 
